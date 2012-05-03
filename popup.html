@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Popup</title>
+    
+    <style type="text/css">
+    .popup{
+        width:410px; 
+        height:410px; 
+        background:rgba(255, 255, 255, 0.8);
+        -webkit-border-radius:10px;
+        border-radius:10px;
+        -webkit-box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+        box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    .logo{
+        display:block;
+        margin:0 auto;
+        padding:35px 0;
+    }
+    
+    .login{
+        padding:0 35px 40px;
+        border-bottom:1px solid #fff;
+    }
+    
+    .login input{
+        display:block;
+    }
+    
+    .login input[type="text"], .login input[type="password"]{
+        color:#A1A1A1;
+        width:92%;
+        margin:0 0 15px;
+        padding:13px;
+        border:0 none;
+        -webkit-border-radius:5px;
+        border-radius:5px;
+        font-size:14px;
+        font-weight:bold;
+    }
+    </style>
+</head>
+<body style="background:rgba(0, 0, 0, 0.7);">
+    <div class="popup">
+        <img class="logo" src="images/logo.png" width="269" />
+        <form action="" class="login">
+            <input type="text" name="email" size="20" maxlength="50" value="E-mail" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+            <input type="password" name="password" size="20" value="" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
+            <input type="submit" name="submit" value="Submit"/>
+        </form>
+    </div>
+</body>
+</html>
