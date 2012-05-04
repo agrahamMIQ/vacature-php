@@ -17,8 +17,6 @@ $parts = array_pop( explode( '/', $pageurl ) );
 $stem = explode( '.', $parts );
 $jobid = $stem[0];
 
-$jobid = "12215379"; //testing
-
 if($cookie != '') {
     foreach( $cookie as $key => $value ) {
         if( $key === "userid" ) {
