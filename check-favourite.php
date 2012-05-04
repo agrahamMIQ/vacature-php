@@ -2,7 +2,8 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Vacature Login</title>
+    <title>Vacature</title>
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <?php

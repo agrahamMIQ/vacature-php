@@ -2,65 +2,80 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Vacature Login</title>
+    <title>Vacature</title>
+    <link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
 <body>
 <?php
 $cookie = htmlspecialchars($_COOKIE["pressrun"]);
 
 if($cookie != '') {
-    echo "You are already logged in.";
+    echo "<p>You are already logged in.</p>";
 } else {
-    if( !isset( $_POST['submit'] ) ) { ?>
-        <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-            <input type="text" name="email" size="20" maxlength="50" value="E-mail" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-            <input type="password" name="password" size="20" value="" onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" />
-            <input type="submit" name="submit" value="Submit"/>
-        </form>
-    
-    <?php
-    } else {
-        error_reporting(-1);
+    if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
         require_once 'functions.php';
         
-        // Building a whitelist array with keys which will send through the form, no others would be accepted later on
-        $whitelist = array('email', 'password', 'submit');
-        check_post($whitelist);
+        $post_data['email'] = htmlspecialchars( $_POST['email'] );
+        $post_data['password'] = htmlspecialchars( $_POST['password'] );
+        $post_data['siteregistered'] = htmlspecialchars( $_POST['siteregistered'] );
         
-        $post_data['email'] = stripcleantohtml( $_POST['email'] );
-        $post_data['password'] = stripcleantohtml( $_POST['password'] );
-        $post_data['siteregistered'] = 0;
-        $url = 'http://dashboard.vacature.com/api/user/authenticate/format/json';
+        $errors = array();
         
-        $json = curl_request( $url, $post_data );
-        $data = json_decode( $json );
-        $response = "";
-        $md5 = "";
-        $userid = "";
-        
-        foreach( $data as $key => $value ) {
-            if( $key == 'response' ) {
-                $response = $value;
-            }
-            if( $key === 'user' ){
-                foreach( $value as $userfield => $uservalue ) {
-                    if( $userfield == "UserMD5" ) {
-                        $md5 = $uservalue;
-                    } else if( $userfield == "ID" ) {
-                        $userid = $uservalue;
-                    }
-                }
-                unset( $userfield );
-            }
+        if( empty( $_POST['email'] ) ) {
+            $errors[] = 'You forgot to enter an email address';
         }
-        unset( $key );
         
-        if( $response === "success" ) {
-            set_login_cookie( json_encode( array( 'login' => 1, 'md5' => $md5, 'userid' => $userid ) ) );
-            echo "<p>You are logged in.</p>";
-        } else { 
-            echo "<p>The credentials you supplied were incorrect.</p>";
+        if( empty( $_POST['password'] ) ) {
+            $errors[] = 'You forgot to enter your password';
+        }
+        
+        if( empty( $errors ) ) {
+            $url = 'http://dashboard.vacature.com/api/user/authenticate/format/json';
+            
+            $json = curl_request( $url, $post_data );
+            $data = json_decode( $json );
+            
+            foreach( $data as $key => $value ) {
+                if( $key == 'response' ) {
+                    $response = $value;
+                }
+                if( $key === 'user' ){
+                    foreach( $value as $userfield => $uservalue ) {
+                        if( $userfield == "UserMD5" ) {
+                            $md5 = $uservalue;
+                        } else if( $userfield == "ID" ) {
+                            $userid = $uservalue;
+                        } else if( $userfield == "Mail" ) {
+                            $email = $uservalue;
+                        }
+                    }
+                    unset( $userfield );
+                }
+            }
+            unset( $key );
+            
+            if( $response === "success" ) {
+                set_login_cookie( json_encode( array( 'email' => $email, 'md5' => $md5, 'userid' => $userid ) ) );
+                echo "<p>You are now logged in.</p>";
+            } else {
+                echo "<p>The credentials you supplied were incorrect.</p>";
+            }
+        } else {
+            foreach( $errors as $msg ) { ?>
+                <p><?php echo $msg; ?></p>
+            <?php
+            }
         }
     }
+    
+    if( !isset( $_POST['email'] ) || !isset( $_POST['password'] ) || !empty($errors) ) { ?>
+        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" />
+            <input type="password" name="password" size="20" value="<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>" />
+            <input type="hidden" name="siteregistered" value="0" />
+            <input type="image" name="submit" src="images/login.png" alt="Verstuur" />
+        </form>
+        <a href="register.html" target="_top" class="register">Register</a>
+    <?php }
 }
 ?>
