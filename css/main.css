@@ -4,6 +4,7 @@ body.login, body.register, body.fav-image{
     border-radius:10px;
     -webkit-box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    font-family:sans-serif;
 }
 
 .logo{
@@ -13,11 +14,16 @@ body.login, body.register, body.fav-image{
 }
 
 form{
+    margin:0 0 15px;
     padding:0 35px 15px;
     border-bottom:1px solid #fff;
 }
 
-input[type="text"], input[type="password"]{
+body.register form{
+    border:0 none;
+}
+
+input[type="text"], input[type="password"], .radio-container{
     color:#A1A1A1;
     width:92%;
     margin:0 0 15px;
@@ -27,6 +33,10 @@ input[type="text"], input[type="password"]{
     border-radius:5px;
     font-size:14px;
     font-weight:bold;
+}
+
+.radio-container {
+    text-align:center;
 }
 
 select{
