@@ -61,17 +61,15 @@ if($cookie != '') {
             } else {
                 echo "<p>The credentials you supplied were incorrect.</p>";
             }
-        } else {
-            foreach( $errors as $msg ) { ?>
-                <p><?php echo $msg; ?></p>
-            <?php
-            }
         }
     }
     
     if( !isset( $_POST['email'] ) || !isset( $_POST['password'] ) || !empty($errors) ) { ?>
-        <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
-            <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" />
+        <form id="login-form" action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
+            <?php foreach( $errors as $msg ) { ?>
+            <p><?php echo $msg; ?></p>
+            <?php } ?>
+            <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } else { echo "E-mail"; } ?>" <?php if(!isset($_POST['email'])) { ?> onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" <?php } ?> />
             <input type="password" name="password" size="20" value="<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>" />
             <input type="hidden" name="siteregistered" value="0" />
             <input type="image" class="btn-login" name="submit" src="images/login.png" alt="Verstuur" />
@@ -79,8 +77,10 @@ if($cookie != '') {
         <table class="register">
             <tr>
                 <td><span>Of aanmedlen met Nieuwe gebruiker?</span></td>
-                <td><a class="btn-register" href="register.html" target="_top"><img src="images/register.png" alt="Register"/></a></td>
+                <td><a class="btn-register" href="register.html" target="_top"><img src="images/register.png" alt="Registreer"/></a></td>
             </tr>
     <?php }
-}
-?>
+} ?>
+<script type="text/javascript" src="js/login.js"></script>
+</body>
+</html>
