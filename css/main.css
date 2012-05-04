@@ -1,3 +1,49 @@
-iframe form input{
+body.login, body.register, body.fav-image{
+    background:rgba(255, 255, 255, 0.8);
+    -webkit-border-radius:10px;
+    border-radius:10px;
+    -webkit-box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+}
+
+.logo{
     display:block;
+    margin:0 auto;
+    padding:15px 0;
+}
+
+form{
+    padding:0 35px 15px;
+    border-bottom:1px solid #fff;
+}
+
+input[type="text"], input[type="password"]{
+    color:#A1A1A1;
+    width:92%;
+    margin:0 0 15px;
+    padding:13px;
+    border:0 none;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    font-size:14px;
+    font-weight:bold;
+}
+
+select{
+    display:block;
+    margin:0 auto 15px;
+}
+
+body.register .btn-register{
+    display:block;
+    margin:0 auto;
+}
+
+body.login .btn-login{
+    display:block;
+    margin:0 auto;
+}
+
+body.login table.register td{
+    padding:0 20px;
 }

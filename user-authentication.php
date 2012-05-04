@@ -5,7 +5,8 @@
     <title>Vacature</title>
     <link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
+<body class="login">
+<img class="logo" src="images/logo.png" width="269" />
 <?php
 $cookie = htmlspecialchars($_COOKIE["pressrun"]);
 
@@ -73,9 +74,13 @@ if($cookie != '') {
             <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } ?>" />
             <input type="password" name="password" size="20" value="<?php if(isset($_POST['password'])) { echo $_POST['password']; } ?>" />
             <input type="hidden" name="siteregistered" value="0" />
-            <input type="image" name="submit" src="images/login.png" alt="Verstuur" />
+            <input type="image" class="btn-login" name="submit" src="images/login.png" alt="Verstuur" />
         </form>
-        <a href="register.html" target="_top" class="register">Register</a>
+        <table class="register">
+            <tr>
+                <td><span>Of aanmedlen met Nieuwe gebruiker?</span></td>
+                <td><a class="btn-register" href="register.html" target="_top"><img src="images/register.png" alt="Register"/></a></td>
+            </tr>
     <?php }
 }
 ?>

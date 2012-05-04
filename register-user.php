@@ -5,7 +5,8 @@
     <title>Vacature</title>
     <link href="css/main.css" type="text/css" rel="stylesheet" />
 </head>
-<body>
+<body class="register">
+<img class="logo" src="images/logo.png" width="269" />
 <?php
 
 if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
@@ -85,7 +86,7 @@ if( !isset( $_POST['email'] ) || !isset( $_POST['password'] ) || !empty($errors)
             <option value="1">Female</option>
         </select>
         <input type="hidden" name="siteregistered" value="0" />
-        <input type="image" name="register" src="images/register.png" alt="Registreer" />
+        <input type="image" name="register" class="btn-register" src="images/register.png" alt="Registreer" />
     </form>
     
     <a href="login.html" target="_top" class="login">Login</a>
