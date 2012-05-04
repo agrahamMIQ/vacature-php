@@ -11,7 +11,13 @@ require_once 'functions.php';
 
 $cookie = json_decode( $_COOKIE["pressrun"] );
 
-$jobid = "12215379";
+/* Get jobid from last segment of parent URL */
+$pageurl = parse_url( $_SERVER['HTTP_REFERER'], PHP_URL_PATH );
+$parts = array_pop( explode( '/', $pageurl ) );
+$stem = explode( '.', $parts );
+$jobid = $stem[0];
+
+$jobid = "12215379"; //testing
 
 if($cookie != '') {
     foreach( $cookie as $key => $value ) {
@@ -23,24 +29,13 @@ if($cookie != '') {
     }
     unset( $key );
     
-    if( isset( $_POST['jobid'] ) ) {        
+    if( isset( $_POST['jobid'] ) ) {
         $favurl = "http://dashboard.vacature.com/api/user/favouritejob/userid/$userid/jobid/$jobid/md5/$md5/format/json";
-        echo "<p>favurl: $favurl</p>";
         $response = curl_request( $favurl );
-        print_r( json_decode( $response ) );
-        
-        if( $response == "\"OK\"" ) {
-            
-        } else {
-            
-        }
-        
     }
     $url = "http://dashboard.vacature.com/api/user/favouritestatus/userid/$userid/jobid/$jobid/md5/$md5/format/json";
-    echo "<p>url: $url</p>";
     
-    $response = curl_request( $url );
-    echo $response; ?>
+    $response = curl_request( $url ); ?>
     
     <form action="<?php echo htmlentities($_SERVER['PHP_SELF']); ?>" method="post">
     <?php if( $response == 'true' ) { ?>
