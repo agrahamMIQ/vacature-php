@@ -22,7 +22,7 @@ input[type="text"], input[type="password"]{
     width:92%;
     margin:0 0 15px;
     padding:13px;
-    border:0 none;
+    border:1px solid #ccc;
     -webkit-border-radius:5px;
     border-radius:5px;
     font-size:14px;
