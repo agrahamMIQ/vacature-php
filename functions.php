@@ -20,18 +20,6 @@ function curl_request( $url, $post ) {
     return $result;
 }
 
-function check_post($whitelist) {
-    foreach ($_POST as $key=>$item) {
-        if (!in_array($key, $whitelist)) {
-            die("Please use only the fields in the form");
-        }
-    }
-}
-
-function stripcleantohtml($input){
-    return htmlentities(trim(strip_tags(stripslashes($s))), ENT_NOQUOTES, "UTF-8");
-}
-
 function set_login_cookie($value) {
     setcookie("pressrun", $value, time() + 1281600); //1 year
 }
