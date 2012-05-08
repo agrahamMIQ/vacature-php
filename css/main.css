@@ -1,10 +1,12 @@
-body.login, body.register, body.fav-image{
+body{
     background:rgba(255, 255, 255, 0.8);
     -webkit-border-radius:10px;
     border-radius:10px;
     -webkit-box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
     box-shadow:2px 2px 2px 2px rgba(0, 0, 0, 0.3);
     font-family:sans-serif;
+    margin:5px;
+    padding:0 35px 5px;
 }
 
 .logo{
@@ -15,7 +17,7 @@ body.login, body.register, body.fav-image{
 
 form{
     margin:0 0 15px;
-    padding:0 35px 15px;
+    padding:0 0 15px;
     border-bottom:1px solid #fff;
 }
 
