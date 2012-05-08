@@ -16,9 +16,10 @@ if($cookie != '') {
     if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
         require_once 'functions.php';
         
-        $post_data['email'] = htmlspecialchars( $_POST['email'] );
-        $post_data['password'] = htmlspecialchars( $_POST['password'] );
-        $post_data['siteregistered'] = htmlspecialchars( $_POST['siteregistered'] );
+        //no validation at the moment for initial testing purposes. Need clarification as to whether API is escaping input already.
+        $post_data['email'] = $_POST['email'];
+        $post_data['password'] = $_POST['password'];
+        $post_data['siteregistered'] = $_POST['siteregistered'];
         
         $errors = array();
         
@@ -80,7 +81,27 @@ if($cookie != '') {
                 <td><a class="btn-register" href="register.html" target="_top"><img src="images/register.png" alt="Registreer"/></a></td>
             </tr>
     <?php }
-} ?>
-<script type="text/javascript" src="js/login.js"></script>
+}
+/* Javascript to add the label background to the password input */
+?>
+<script type="text/javascript">
+(function() {
+    var id = document.getElementById('login-form');
+    if (id && id.password) {
+        var name = id.password;
+        var unclicked = function() {
+            if (name.value == '') {
+                name.style.background = 'url(images/paswoord.png) 10px no-repeat';
+            }
+        };
+        var clicked = function() {
+            name.style.background = '';
+        };
+        name.onfocus = clicked;
+        name.onblur = unclicked;
+        unclicked();
+    }
+})();
+</script>
 </body>
 </html>
