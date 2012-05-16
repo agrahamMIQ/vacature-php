@@ -33,20 +33,6 @@ if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
         $errors[] = '<p>U hebt vergeten uw e-mailadres in te voeren.</p>';
     }
     
-    if( empty( $_POST['language'] ) ) {
-        $errors[] = '<p>You forgot to specify a language.</p>';
-    }
-    
-    if( empty( $_POST['titulation'] ) ) {
-        $errors[] = '<p>You forgot to specify your gender.</p>';
-    } else { //convert values to 0/1
-        if( $post_data['titulation'] == "male" ) {
-            $post_data['titulation'] = "0";
-        } elseif( $post_data['titulation'] == "female" ) {
-            $post_data['titulation'] = "1";
-        }
-    }
-    
     if( empty( $errors ) ) {
         $url = 'http://dashboard.vacature.com/api/user/create/format/json';
         
@@ -81,13 +67,13 @@ if( ( !isset( $_POST['email'] ) || !isset( $_POST['password'] ) ) || ( !empty($e
         <input type="text" name="last_name" size="20" maxlength="50" value="<?php if(isset($_POST['last_name'])) { echo $_POST['last_name']; } else { echo "Naam"; } ?>" <?php if(!isset($_POST['last_name']) || $_POST['last_name'] == 'Naam') { ?> onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" <?php } ?> />
         <input type="text" name="email" size="20" maxlength="50" value="<?php if(isset($_POST['email'])) { echo $_POST['email']; } else { echo "E-mail"; } ?>" <?php if(!isset($_POST['email']) || $_POST['email'] == 'E-mail') { ?> onfocus="if(this.value==this.defaultValue)this.value='';" onblur="if(this.value=='')this.value=this.defaultValue;" <?php } ?> />
         <div class="radio-container">
-            <input type="radio" <?php if( $post_data['language'] === 'Dutch' || !isset($post_data['language']) ) { echo 'checked="checked"'; } ?> name="language" id="lang1" value="Dutch"/><label for="lang1">Dutch</label>
-            <input type="radio" <?php if( $post_data['language'] === 'French' ) { echo 'checked="checked"'; } ?> name="language" id="lang2" value="French"/><label for="lang2">French</label>
-            <input type="radio" <?php if( $post_data['language'] === 'English' ) { echo 'checked="checked"'; } ?> name="language" id="lang3" value="English"/><label for="lang3">English</label>
+            <input type="radio" <?php if( $post_data['language'] === '30200' || !isset($post_data['language']) ) { echo 'checked="checked"'; } ?> name="language" id="lang1" value="30200"/><label for="lang1">Dutch</label>
+            <input type="radio" <?php if( $post_data['language'] === '30201' ) { echo 'checked="checked"'; } ?> name="language" id="lang2" value="30201"/><label for="lang2">French</label>
+            <input type="radio" <?php if( $post_data['language'] === '30202' ) { echo 'checked="checked"'; } ?> name="language" id="lang3" value="30202"/><label for="lang3">English</label>
         </div>
         <div class="radio-container">
-            <input type="radio" <?php if( $post_data['titulation'] === '0' || !isset($post_data['titulation']) ) { echo 'checked="checked"'; } ?> name="titulation" id="gender1" value="male"/><label for="gender1">Man</label>
-            <input type="radio" <?php if( $post_data['titulation'] === '1' ) { echo 'checked="checked"'; } ?> name="titulation" id="gender2" value="female"/><label for="gender2">Vrouw</label>
+            <input type="radio" <?php if( $post_data['titulation'] === '0' || !isset($post_data['titulation']) ) { echo 'checked="checked"'; } ?> name="titulation" id="gender1" value="0"/><label for="gender1">Man</label>
+            <input type="radio" <?php if( $post_data['titulation'] === '1' ) { echo 'checked="checked"'; } ?> name="titulation" id="gender2" value="1"/><label for="gender2">Vrouw</label>
         </div>
         <input type="hidden" name="siteregistered" value="0" />
         <input type="image" name="register" class="btn-register" src="images/register.png" alt="Registreer" />
