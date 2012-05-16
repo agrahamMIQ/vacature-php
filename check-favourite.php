@@ -46,7 +46,7 @@ if($cookie != '') {
 <?php
 } else {
     //output generic favourite image with login link, which should appear as a popup ?>
-    <a href="log-in.html" target="_top"><img width="100px" src="images/favourite-false.gif" alt="log in" /></a>
+    <a href="login.html" target="_top"><img width="100px" src="images/favourite-false.gif" alt="log in" /></a>
 <?php } ?>
 </body>
 </html>
