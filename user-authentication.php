@@ -24,11 +24,11 @@ if($cookie != '') {
         $errors = array();
         
         if( empty( $_POST['email'] ) ) {
-            $errors[] = 'You forgot to enter an email address';
+            $errors[] = 'U hebt vergeten uw e-mailadres in te voeren';
         }
         
         if( empty( $_POST['password'] ) ) {
-            $errors[] = 'You forgot to enter your password';
+            $errors[] = 'U hebt vergeten uw wachtwoord in te voeren';
         }
         
         if( empty( $errors ) ) {
@@ -58,9 +58,9 @@ if($cookie != '') {
             
             if( $response === "success" ) {
                 set_login_cookie( json_encode( array( 'email' => $email, 'md5' => $md5, 'userid' => $userid ) ) );
-                echo "<p>You are now logged in.</p>";
+                echo "<p>U bent nu ingelogd.</p>";
             } else {
-                echo "<p>The credentials you supplied were incorrect.</p>";
+                echo "<p>De referenties die u geleverd hebt zijn onjuist.</p>";
             }
         }
     }

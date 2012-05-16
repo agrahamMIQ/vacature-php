@@ -22,15 +22,15 @@ if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
     $errors = array();
     
     if( empty( $_POST['first_name'] ) || strcasecmp( $_POST['first_name'], 'Voornaam' ) == 0 ) {
-        $errors[] = '<p>You forgot to enter your first name.</p>';
+        $errors[] = '<p>U hebt vergeten uw voornaam in te voeren.</p>';
     }
     
     if( empty( $_POST['last_name'] ) || strcasecmp( $_POST['last_name'], 'Naam' ) == 0 ) {
-        $errors[] = '<p>You forgot to enter your last name.</p>';
+        $errors[] = '<p>U hebt vergeten uw achternaam in te voeren.</p>';
     }
     
     if( empty( $_POST['email'] ) || strcasecmp( $_POST['email'], 'e-mail' ) == 0 ) {
-        $errors[] = '<p>You forgot to enter an email address.</p>';
+        $errors[] = '<p>U hebt vergeten uw e-mailadres in te voeren.</p>';
     }
     
     if( empty( $_POST['language'] ) ) {
@@ -65,9 +65,9 @@ if( isset( $_POST['email'] ) || isset( $_POST['password'] ) ) {
         unset( $key );
         
         if( $response === "added" ) {
-            echo "<p>Your account has been created, please activate account by clicking the link that was sent to your email. <a href=\"log-in.html\" target=\"_top\"><img src=\"images/login.png\" alt=\"Login\"/></a></p>";
+            echo "<p>Uw account is aangemaakt. Activeer account door het klikken op de link die naar uw e-mail adres is verzonden. <a href=\"log-in.html\" target=\"_top\"><img src=\"images/login.png\" alt=\"Login\"/></a></p>";
         } else {
-            echo "<p>There was an error in creating your account.</p>";
+            echo "<p>Er is een fout opgetreden in het creëren van uw account.</p>";
         }
     }
 }
